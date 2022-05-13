@@ -32,11 +32,21 @@
 </template>
 
 <script>
+import { CIcon } from '@coreui/icons-vue'
+import { cilPen, cilX } from '@coreui/icons'
+
 export default {
   name: 'Tags',
   data() {
     return {
       tags: [],
+    }
+  },
+  components: { CIcon },
+  setup() {
+    return {
+      cilX,
+      cilPen,
     }
   },
   mounted() {

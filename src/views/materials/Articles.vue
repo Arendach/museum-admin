@@ -30,9 +30,11 @@
               </span>
             </td>
             <td>
-              <button class="btn btn-primary btn-sm" title="Редагувати">
-                <CIcon :icon="cilPen"></CIcon>
-              </button>
+              <RouterLink :to="`/articles/edit/${article.id}`">
+                <button class="btn btn-primary btn-sm" title="Редагувати">
+                  <CIcon :icon="cilPen"></CIcon>
+                </button>
+              </RouterLink>
               <button class="btn btn-danger btn-sm" title="Видалити">
                 <CIcon :icon="cilX"></CIcon>
               </button>
@@ -48,6 +50,7 @@
 import { ref } from 'vue'
 import { CIcon } from '@coreui/icons-vue'
 import { cilPen, cilX } from '@coreui/icons'
+import { RouterLink } from 'vue-router'
 
 export default {
   name: 'Articles',
@@ -58,6 +61,7 @@ export default {
   },
   components: {
     CIcon,
+    RouterLink,
   },
   setup() {
     const activeKey = ref(1)
