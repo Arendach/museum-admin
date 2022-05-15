@@ -10,6 +10,8 @@ $enable-rtl: true;
 // Import Chart.js Tooltips
 @import "~@coreui/chartjs/scss/tooltips";
 
+@import "~vue-multiselect/dist/vue-multiselect.css";
+
 @import "layout";
 @import "example";
 
