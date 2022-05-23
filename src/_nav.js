@@ -1,17 +1,9 @@
 export default [
   {
     component: 'CNavItem',
-    name: 'Dashboard',
+    name: 'Адмін панель',
     to: '/dashboard',
     icon: 'cil-speedometer',
-    badge: {
-      color: 'primary',
-      text: 'NEW',
-    },
-  },
-  {
-    component: 'CNavTitle',
-    name: 'Компоненти',
   },
   {
     component: 'CNavGroup',
@@ -28,6 +20,16 @@ export default [
         component: 'CNavItem',
         name: 'Теги',
         to: '/tags',
+      },
+      {
+        component: 'CNavItem',
+        name: 'Люди',
+        to: '/peoples',
+      },
+      {
+        component: 'CNavItem',
+        name: 'Цитати',
+        to: '/quotes',
       },
     ],
   },

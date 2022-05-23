@@ -1,12 +1,11 @@
-import { h, resolveComponent } from 'vue'
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import DefaultLayout from '@/layouts/DefaultLayout'
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'Адмін панель',
     component: DefaultLayout,
     redirect: '/dashboard',
     children: [
@@ -16,38 +15,36 @@ const routes = [
         component: () => import('@/views/Dashboard.vue'),
       },
       {
-        path: '/base',
-        name: 'Base',
-        component: {
-          render() {
-            return h(resolveComponent('router-view'))
-          },
-        },
-        redirect: '/base/breadcrumbs',
-        children: [
-          {
-            path: '/articles',
-            name: 'Статті',
-            component: () => import('@/views/materials/Articles.vue'),
-          },
-          {
-            path: '/articles/edit/:id',
-            name: 'Редагування статті',
-            component: () => import('@/views/materials/Articles/EditForm.vue'),
-          },
-          {
-            path: '/tags',
-            name: 'Теги',
-            component: () => import('@/views/materials/Tags.vue'),
-          },
-        ],
+        path: '/articles',
+        name: 'Статті',
+        component: () => import('@/views/materials/Articles.vue'),
+      },
+      {
+        path: '/articles/edit/:id',
+        name: 'Редагування статті',
+        component: () => import('@/views/materials/Articles/EditForm.vue'),
+      },
+      {
+        path: '/tags',
+        name: 'Теги',
+        component: () => import('@/views/materials/Tags.vue'),
+      },
+      {
+        path: '/peoples',
+        name: 'Люди',
+        component: () => import('@/views/materials/Peoples'),
+      },
+      {
+        path: '/quotes',
+        name: 'Цитати',
+        component: () => import('@/views/materials/Quotes'),
       },
     ],
   },
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(process.env.BASE_URL),
+  history: createWebHistory(process.env.BASE_URL),
   routes,
   scrollBehavior() {
     return { top: 0 }
