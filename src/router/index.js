@@ -35,6 +35,16 @@ const routes = [
         component: () => import('@/views/materials/Peoples'),
       },
       {
+        path: '/peoples/add',
+        name: 'Додати людину',
+        component: () => import('@/views/materials/Peoples/AddForm'),
+      },
+      {
+        path: '/peoples/edit/:id',
+        name: 'Редагування людини',
+        component: () => import('@/views/materials/Peoples/EditForm'),
+      },
+      {
         path: '/quotes',
         name: 'Цитати',
         component: () => import('@/views/materials/Quotes'),

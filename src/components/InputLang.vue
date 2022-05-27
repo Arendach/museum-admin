@@ -27,7 +27,7 @@
       type="text"
       class="form-control"
       :name="name + lang.postfix"
-      :value="item[name + lang.postfix]"
+      :value="typeof item === 'object' ? item[name + lang.postfix] : null"
     />
   </div>
 </template>

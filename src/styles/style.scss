@@ -12,6 +12,10 @@ $enable-rtl: true;
 
 @import "~vue-multiselect/dist/vue-multiselect.css";
 
+// import sweet alert
+@import '~sweetalert2/dist/sweetalert2.min.css';
+
+
 @import "layout";
 @import "example";
 

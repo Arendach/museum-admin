@@ -18,6 +18,12 @@ export default {
       options.duration = 5000
       this.$toast.success(message, options)
     },
+    errorToast(message, options) {
+      options = typeof options === 'object' ? options : {}
+      options.position = 'top-right'
+      options.duration = 5000
+      this.$toast.error(message, options)
+    },
     mapMultiSelect(items) {
       return items.map((item) => {
         return { id: item.id, title: item.title }
