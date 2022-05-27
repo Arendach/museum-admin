@@ -1,48 +1,50 @@
-const RequestHeaders = {
+const DefaultHeaders = {
   'Content-Type': 'application/json',
   'X-Requested-With': 'XMLHttpRequest',
+  'X-Pagination-Limit': process.env.VUE_APP_API_LIMIT,
+}
+
+const DefaultOptions = {
+  mode: 'cors',
+  cache: 'no-cache',
+  credentials: 'same-origin',
+  headers: DefaultHeaders,
 }
 
 export default {
   get(url, options) {
-    return fetch(this.apiUrl(url), options).then((res) => res.json())
+    return fetch(this.apiUrl(url), {
+      method: 'GET',
+      ...DefaultOptions,
+      ...options,
+    }).then((res) => res.json())
   },
-  put(url, body, headers) {
-    let defaultHeaders = RequestHeaders
 
-    if (typeof headers === 'object') {
-      for (let key of headers) {
-        defaultHeaders[key] = headers[key]
-      }
-    }
-
+  put(url, body, options) {
     return fetch(this.apiUrl(url), {
       method: 'PUT',
       body: JSON.stringify(body),
-      headers: defaultHeaders,
+      ...DefaultOptions,
+      ...options,
     }).then((res) => res.json())
   },
-  post(url, body, headers) {
-    let defaultHeaders = RequestHeaders
 
-    if (typeof headers === 'object') {
-      for (let key of headers) {
-        defaultHeaders[key] = headers[key]
-      }
-    }
-
+  post(url, body, options) {
     return fetch(this.apiUrl(url), {
       method: 'POST',
       body: JSON.stringify(body),
-      headers: defaultHeaders,
+      ...DefaultOptions,
+      ...options,
     }).then((res) => res.json())
   },
+
   delete(url) {
     return fetch(this.apiUrl(url), {
       method: 'DELETE',
-      headers: RequestHeaders,
+      ...DefaultOptions,
     }).then((res) => res.json())
   },
+
   apiUrl(path) {
     return `${process.env.VUE_APP_API_URL}${path}`
   },

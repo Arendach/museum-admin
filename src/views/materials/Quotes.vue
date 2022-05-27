@@ -10,7 +10,7 @@ export default {
   components: { DefaultTable },
   methods: {
     header: () => ['ID', 'Цитата', 'Автор'],
-    body: (item) => [item.id, item.title, item.user.name],
+    body: (item) => [item.id, item.title, item.people.name],
   },
 }
 </script>

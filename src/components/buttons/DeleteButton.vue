@@ -17,6 +17,7 @@ export default {
   components: { CIcon },
   methods: {
     handle() {
+
       this.$swal({
         icon: 'warning',
         title: 'Видалити?',
@@ -30,7 +31,10 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           Api.delete(this.url)
-            .then(() => this.successToast('Видалено'))
+            .then(() => {
+              this.successToast('Видалено')
+              this.$emit('deleted')
+            })
             .catch(() => this.errorToast('Виникла помилка!'))
         }
       })

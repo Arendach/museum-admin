@@ -16,35 +16,68 @@
           }"
           @click="selected = lang.key"
         >
-          <img style="width: 15px" :src="`/flags/${lang.key}.svg`" />
+          <img style="width: 15px" :src="`/flags/${lang.key}.svg`"/>
         </span>
       </div>
     </div>
+    <div v-for="lang in languages">
+      <div
+        :id="name + lang.postfix"
+        v-show="lang.key === selected"
+        class="form-control"
+        contenteditable="true"
+        @input="updateItem(name + lang.postfix)"
+      >{{ item[name + lang.postfix] }}
+      </div>
+    </div>
+
     <input
-      v-for="lang in languages"
-      v-show="lang.key === selected"
-      :key="lang.key"
-      type="text"
-      class="form-control"
-      :name="name + lang.postfix"
-      :value="typeof item === 'object' ? item[name + lang.postfix] : null"
-    />
+      v-for="field in fields"
+      :key="field.name"
+      :name="field.name"
+      :value="field.value"
+      type="hidden">
   </div>
 </template>
 
 <script>
 export default {
   name: 'InputLang',
-  props: ['label', 'item', 'name'],
+  props: {
+    label: String,
+    item: {
+      type: Object,
+      default: {}
+    },
+    name: String
+  },
   data() {
     return {
       selected: 'ua',
       languages: [],
+      fields: [],
     }
   },
   mounted() {
     this.languages = this.config('languages')
+    this.languages.forEach(lang => {
+      this.fields.push({
+        name: `${this.name}${lang.postfix}`,
+        value: this.item[`${this.name}${lang.postfix}`] ?? ''
+      })
+    })
   },
+  methods: {
+    updateItem(item) {
+      let content = this.$el.querySelector(`#${item}`).innerHTML
+
+      this.fields.map(field => {
+        if (field.name === item) field.value = content
+
+        return field
+      })
+    }
+  }
 }
 </script>
 

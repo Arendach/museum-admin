@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import DefaultLayout from '@/layouts/DefaultLayout'
+import peoples from '@/router/peoples'
 
 const routes = [
   {
@@ -29,21 +30,7 @@ const routes = [
         name: 'Теги',
         component: () => import('@/views/materials/Tags.vue'),
       },
-      {
-        path: '/peoples',
-        name: 'Люди',
-        component: () => import('@/views/materials/Peoples'),
-      },
-      {
-        path: '/peoples/add',
-        name: 'Додати людину',
-        component: () => import('@/views/materials/Peoples/AddForm'),
-      },
-      {
-        path: '/peoples/edit/:id',
-        name: 'Редагування людини',
-        component: () => import('@/views/materials/Peoples/EditForm'),
-      },
+      ...peoples.routes,
       {
         path: '/quotes',
         name: 'Цитати',

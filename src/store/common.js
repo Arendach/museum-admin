@@ -21,6 +21,7 @@ export default {
     setTableHeader: (state, tableHeader) => (state.tableHeader = tableHeader),
     setTableBody: (state, tableBody) => (state.tableBody = tableBody),
     setIsLoaded: (state, isLoaded) => (state.isLoaded = isLoaded),
+    deleteItem:(state, id) => state.items.filter(item => item.id !== id)
   },
   actions: {
     async loadItems({ commit, getters }) {
