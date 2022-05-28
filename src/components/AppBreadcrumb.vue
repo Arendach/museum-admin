@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue'
+import {onMounted, ref} from 'vue'
 import router from '@/router'
 
 export default {
@@ -21,13 +21,20 @@ export default {
     const breadcrumbs = ref()
 
     const getBreadcrumbs = () => {
-      return router.currentRoute.value.matched.map((route) => {
-        return {
-          active: route.path === router.currentRoute.value.fullPath,
-          name: route.name,
-          path: `${router.options.history.base}${route.path}`,
-        }
-      })
+      return router
+        .currentRoute
+        .value
+        .matched
+        .filter(route => !route.meta.notCrumb)
+        .map((route) => {
+          let path = router.resolve({name: route.name, params: {}}).path
+
+          return {
+            active: path === router.currentRoute.value.path,
+            name: route.meta.title,
+            path
+          }
+        })
     }
 
     router.afterEach(() => {

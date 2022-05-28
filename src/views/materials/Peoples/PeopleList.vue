@@ -1,11 +1,11 @@
 <template>
   <div style="text-align: right; margin-bottom: 24px">
-    <router-link to="/peoples/add" class="btn btn-primary">
+    <router-link :to="{name: 'peoples.add'}" class="btn btn-primary">
       Додати нову людину
     </router-link>
   </div>
 
-  <DefaultTable url="/peoples" :header="header" :body="body"></DefaultTable>
+  <DefaultTable edit-route="peoples.edit" url="/peoples" :header="header" :body="body"></DefaultTable>
 </template>
 
 <script>

@@ -3,14 +3,31 @@
     <Tabs>
       <Tab name="Інформація">
         <CForm id="editPeople">
-          <InputLang label="Імя" :item="people" name="name"></InputLang>
-          <CButton color="primary" @click="updatePeople">Зберегти</CButton>
+          <InputLang
+            label="Імя"
+            :item="people"
+            name="name"
+          ></InputLang>
+
+          <VSelect
+            :options="countries"
+            name="country_id"
+            label="Країна"
+            :value="people.country_id"
+          ></VSelect>
+
+          <CButton
+            color="primary"
+            @click="updatePeople"
+          >
+            Зберегти
+          </CButton>
         </CForm>
       </Tab>
       <Tab name="Цитати">
         <div style="text-align: right; margin-bottom: 24px">
           <router-link
-            :to="`/peoples/edit/${$route.params.id}/quote/add`"
+            :to="{name: 'peoples.quotes.add', params: {id: $route.params.id}}"
             class="btn btn-primary"
           >
             Додати цитату
@@ -30,7 +47,7 @@
             <td>{{ quote.id }}</td>
             <td>{{ quote.title }}</td>
             <td class="actions">
-              <EditButton to="/tst"></EditButton>
+              <EditButton :to="{name: 'peoples.quotes.edit', params: {id: $route.params.id, quote_id: quote.id}}"></EditButton>
               <DeleteButton :url="`/quote/${quote.id}`" @deleted="deleteQuote(quote.id)"></DeleteButton>
             </td>
           </tr>
@@ -53,6 +70,8 @@ import Wrapper from '@/components/Wrapper'
 import {Tab, Tabs} from 'vue3-tabs-component'
 import EditButton from '@/components/buttons/EditButton'
 import DeleteButton from '@/components/buttons/DeleteButton'
+import VSelect from "@/components/VSelect";
+import {mapGetters} from "vuex";
 
 export default {
   name: 'EditForm',
@@ -63,12 +82,14 @@ export default {
     Tab,
     EditButton,
     DeleteButton,
+    VSelect,
   },
   data() {
     return {
       people: {},
     }
   },
+  computed: mapGetters(['countries']),
   beforeMount() {
     this.loadPeople()
   },

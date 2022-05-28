@@ -11,7 +11,7 @@ import InputLang from '@/components/InputLang'
 import Api from '@/Api'
 
 export default {
-  name: 'AddForm',
+  name: 'AddQuoteForm',
   components: { InputLang },
   methods: {
     createQuote() {

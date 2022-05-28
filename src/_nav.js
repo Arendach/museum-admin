@@ -24,13 +24,8 @@ export default [
       {
         component: 'CNavItem',
         name: 'Люди',
-        to: '/peoples',
-      },
-      {
-        component: 'CNavItem',
-        name: 'Цитати',
-        to: '/quotes',
-      },
+        to: { name: 'peoples.list' },
+      }
     ],
   },
 ]

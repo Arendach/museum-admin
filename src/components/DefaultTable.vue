@@ -15,7 +15,7 @@
           {{ typeof col === 'function' ? col() : col }}
         </td>
         <td class="actions">
-          <RouterLink :to="`${url}/edit/${row[0]}`">
+          <RouterLink :to="{name: editRoute, params: {id: row[0]}}">
             <button class="btn btn-primary btn-sm" title="Редагувати">
               <CIcon :icon="cilPen"></CIcon>
             </button>
@@ -41,7 +41,7 @@ import DeleteButton from "@/components/buttons/DeleteButton"
 
 export default {
   name: 'DefaultTable',
-  props: ['url', 'header', 'body'],
+  props: ['url', 'header', 'body', 'editRoute'],
   components: {
     LaravelVuePagination,
     Wrapper,

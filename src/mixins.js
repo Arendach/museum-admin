@@ -1,5 +1,5 @@
 import config from '@/config'
-import serialize from 'form-serialize'
+import formSerialize from '@/searialize'
 
 export default {
   methods: {
@@ -10,7 +10,7 @@ export default {
       return config[key]
     },
     serialize(form) {
-      return serialize(form, { hash: true })
+      return formSerialize(form.elements)
     },
     successToast(message, options) {
       options = typeof options === 'object' ? options : {}

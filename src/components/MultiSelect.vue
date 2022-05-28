@@ -4,7 +4,7 @@
     <VueMultiselect
       v-model="value"
       :options="options"
-      :multiple="true"
+      :multiple="multiple"
       label="title"
       track-by="id"
       :close-on-select="false"
@@ -38,6 +38,10 @@ export default {
     name: {
       type: String,
     },
+    multiple: {
+      type: Boolean,
+      default: true,
+    }
   },
   components: {
     VueMultiselect,

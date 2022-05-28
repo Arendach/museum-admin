@@ -2,40 +2,26 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import DefaultLayout from '@/layouts/DefaultLayout'
 import peoples from '@/router/peoples'
+import articles from "@/router/articles"
+import tags from "@/router/tags"
 
 const routes = [
   {
     path: '/',
-    name: 'Адмін панель',
     component: DefaultLayout,
     redirect: '/dashboard',
+    meta: {title: 'Адмінка'},
+    name: 'index',
     children: [
       {
         path: '/dashboard',
         name: 'Dashboard',
+        meta: {title: 'Панель керування'},
         component: () => import('@/views/Dashboard.vue'),
       },
-      {
-        path: '/articles',
-        name: 'Статті',
-        component: () => import('@/views/materials/Articles.vue'),
-      },
-      {
-        path: '/articles/edit/:id',
-        name: 'Редагування статті',
-        component: () => import('@/views/materials/Articles/EditForm.vue'),
-      },
-      {
-        path: '/tags',
-        name: 'Теги',
-        component: () => import('@/views/materials/Tags.vue'),
-      },
-      ...peoples.routes,
-      {
-        path: '/quotes',
-        name: 'Цитати',
-        component: () => import('@/views/materials/Quotes'),
-      },
+      ...articles,
+      ...tags,
+      ...peoples,
     ],
   },
 ]
