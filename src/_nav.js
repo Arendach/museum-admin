@@ -25,6 +25,11 @@ export default [
         component: 'CNavItem',
         name: 'Люди',
         to: { name: 'peoples.list' },
+      },
+      {
+        component: 'CNavItem',
+        name: 'Країни',
+        to: { name: 'countries.list' },
       }
     ],
   },

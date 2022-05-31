@@ -17,8 +17,8 @@ export default {
     DefaultTable,
   },
   methods: {
-    header: () => ['ID', 'Імя'],
-    body: (item) => [item.id, item.name],
+    header: () => ['ID', 'Імя', 'Країна'],
+    body: (item) => [item.id, item.name, (item.country?.title ?? 'Не обрано')],
   },
 }
 </script>

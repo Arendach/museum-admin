@@ -4,6 +4,7 @@ import DefaultLayout from '@/layouts/DefaultLayout'
 import peoples from '@/router/peoples'
 import articles from "@/router/articles"
 import tags from "@/router/tags"
+import counties from '@/router/countries'
 
 const routes = [
   {
@@ -22,6 +23,7 @@ const routes = [
       ...articles,
       ...tags,
       ...peoples,
+      ...counties,
     ],
   },
 ]

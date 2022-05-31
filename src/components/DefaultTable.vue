@@ -20,7 +20,7 @@
               <CIcon :icon="cilPen"></CIcon>
             </button>
           </RouterLink>
-          <DeleteButton :url="`${url}/${row[0]}`" @create="create"></DeleteButton>
+          <DeleteButton :url="`${deleteUrl}/${row[0]}`" @deleted="deleteItem(row[0])"></DeleteButton>
         </td>
       </tr>
       </tbody>
@@ -41,7 +41,27 @@ import DeleteButton from "@/components/buttons/DeleteButton"
 
 export default {
   name: 'DefaultTable',
-  props: ['url', 'header', 'body', 'editRoute'],
+  props: {
+    url: {
+      type: String,
+      required: true
+    },
+    header: {
+      type: Function,
+      default: () => ['ID', 'Назва'],
+    },
+    body: {
+      type: Function,
+      default: (item) => [item.id, item.title],
+    },
+    editRoute: {
+      type: [String, Object]
+    },
+    deleteUrl: {
+      type: String,
+      default: ''
+    }
+  },
   components: {
     LaravelVuePagination,
     Wrapper,
@@ -71,15 +91,13 @@ export default {
       loadItems: 'common/loadItems',
       mapTableHeader: 'common/mapTableHeader',
       mapTableBody: 'common/mapTableBody',
+      deleteItem: 'common/deleteItem'
     }),
     ...mapMutations({
       setPage: 'common/setPage',
       setUrl: 'common/setUrl',
-      //deleteItem: 'common/deleteItem',
+      mapBodyCallback: 'common/mapBodyCallback',
     }),
-    create(item){
-      alert(item)
-    },
     paginationChangePage(page) {
       this.reRender(page)
     },
@@ -87,7 +105,8 @@ export default {
       this.setPage(page)
       await this.loadItems()
       await this.mapTableHeader(this.header)
-      await this.mapTableBody(this.body)
+      await this.mapBodyCallback(this.body)
+      await this.mapTableBody()
     },
   },
 }
@@ -96,5 +115,9 @@ export default {
 <style scoped>
 .actions {
   width: 85px;
+}
+
+.table {
+  background-color: #fff;
 }
 </style>

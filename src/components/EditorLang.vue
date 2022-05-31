@@ -52,6 +52,7 @@ export default {
     },
     item: {
       type: [Object],
+      default: {}
     },
     name: {
       type: [String],

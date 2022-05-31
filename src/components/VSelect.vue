@@ -75,3 +75,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.vs__dropdown-toggle{
+  background-color: #fff;
+}
+</style>
