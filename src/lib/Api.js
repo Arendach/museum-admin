@@ -25,7 +25,7 @@ export default {
       method: 'GET',
       ...DefaultOptions,
       ...options,
-    }).then((res) => res.json())
+    }).then(ResponseHandler)
   },
 
   put(url, body, options) {
@@ -43,14 +43,14 @@ export default {
       body: JSON.stringify(body),
       ...DefaultOptions,
       ...options,
-    }).then((res) => res.json())
+    }).then(ResponseHandler)
   },
 
   delete(url) {
     return fetch(this.apiUrl(url), {
       method: 'DELETE',
       ...DefaultOptions,
-    }).then((res) => res.json())
+    }).then(ResponseHandler)
   },
 
   apiUrl(path) {

@@ -19,7 +19,7 @@ export default [
       {
         component: 'CNavItem',
         name: 'Теги',
-        to: '/tags',
+        to: {name: 'tags.list'},
       },
       {
         component: 'CNavItem',
