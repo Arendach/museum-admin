@@ -29,6 +29,9 @@
         @input="updateItem(name + lang.postfix)"
       >{{ item[name + lang.postfix] }}
       </div>
+      <div v-show="lang.key === selected">
+        <div class="invalid-feedback" :id="name + lang.postfix + '_invalid'"></div>
+      </div>
     </div>
 
     <input

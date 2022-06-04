@@ -16,7 +16,7 @@ import InputLang from '@/components/InputLang'
 import InputText from "@/components/InputText";
 import EditorLang from "@/components/EditorLang";
 import VSelect from "@/components/VSelect";
-import Api from '@/Api'
+import Api from '@/lib/Api'
 import Wrapper from "@/components/Wrapper";
 
 export default {

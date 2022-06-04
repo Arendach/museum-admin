@@ -2,6 +2,8 @@ const DefaultHeaders = {
   'Content-Type': 'application/json',
   'X-Requested-With': 'XMLHttpRequest',
   'X-Pagination-Limit': process.env.VUE_APP_API_LIMIT,
+  'X-Order-Field': 'id',
+  'X-Order-Direction': 'desc',
 }
 
 const DefaultOptions = {
@@ -9,6 +11,12 @@ const DefaultOptions = {
   cache: 'no-cache',
   credentials: 'same-origin',
   headers: DefaultHeaders,
+}
+
+const ResponseHandler = (res) => {
+  if (!res.ok) throw res
+
+  return res.json()
 }
 
 export default {
@@ -26,7 +34,7 @@ export default {
       body: JSON.stringify(body),
       ...DefaultOptions,
       ...options,
-    }).then((res) => res.json())
+    }).then(ResponseHandler)
   },
 
   post(url, body, options) {

@@ -1,7 +1,7 @@
 import {createStore} from 'vuex'
 import common from '@/store/common'
 import breadcrumbs from "@/store/breadcrumbs"
-import Api from "@/Api";
+import Api from "@/lib/Api";
 
 export default createStore({
   state: {

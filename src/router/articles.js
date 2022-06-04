@@ -1,12 +1,29 @@
 export default [
   {
     path: '/articles',
-    name: 'Статті',
-    component: () => import('@/views/materials/Articles.vue'),
-  },
-  {
-    path: '/articles/edit/:id',
-    name: 'Редагування статті',
-    component: () => import('@/views/materials/Articles/EditForm.vue'),
+    name: 'articles',
+    meta: {title: 'Статті'},
+    redirect: '/articles/list',
+    component: () => import('@/views/RouterView'),
+    children: [
+      {
+        path: 'list',
+        name: 'articles.list',
+        meta: {title: 'Список'},
+        component: () => import('@/views/materials/Articles/ArticlesList')
+      },
+      {
+        path: 'edit/:id',
+        name: 'articles.edit',
+        meta: {title: 'Редагування статті'},
+        component: () => import('@/views/materials/Articles/EditForm.vue'),
+      },
+      {
+        path: 'add',
+        name: 'articles.add',
+        meta: {title: 'Нова стаття'},
+        component: () => import('@/views/materials/Articles/AddForm')
+      }
+    ]
   },
 ]

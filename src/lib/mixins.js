@@ -1,5 +1,6 @@
-import config from '@/config'
-import formSerialize from '@/searialize'
+import config from '@/lib/config'
+import formSerialize from '@/lib/serialize'
+import FormErrorHandler from '@/lib/form-error-handler'
 
 export default {
   methods: {
@@ -10,7 +11,7 @@ export default {
       return config[key]
     },
     serialize(form) {
-      return formSerialize(form.elements)
+      return formSerialize(form)
     },
     successToast(message, options) {
       options = typeof options === 'object' ? options : {}
@@ -26,8 +27,14 @@ export default {
     },
     mapMultiSelect(items) {
       return items.map((item) => {
-        return { id: item.id, title: item.title }
+        return {id: item.id, title: item.title}
       })
     },
+    showErrors(response) {
+      this.errorToast('Виникла помилка! Дані не збережено!')
+      response.json().then(res => {
+        return FormErrorHandler(res)
+      })
+    }
   },
 }

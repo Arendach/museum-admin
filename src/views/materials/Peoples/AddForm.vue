@@ -13,7 +13,7 @@
 <script>
 import InputLang from '@/components/InputLang'
 import VSelect from "@/components/VSelect";
-import Api from '@/Api'
+import Api from '@/lib/Api'
 import {mapActions, mapGetters} from "vuex";
 
 export default {

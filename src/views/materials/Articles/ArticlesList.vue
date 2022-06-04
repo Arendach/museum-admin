@@ -1,8 +1,7 @@
 <template>
   <Wrapper :loaded="isLoaded">
-    <div style="text-align: right; margin-bottom: 15px">
-      <button class="btn btn-primary">Створити статтю</button>
-    </div>
+    <AddButton route="articles.add" label="Нова стаття"></AddButton>
+
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -32,14 +31,8 @@
             </span>
           </td>
           <td>
-            <RouterLink :to="`/articles/edit/${article.id}`">
-              <button class="btn btn-primary btn-sm" title="Редагувати">
-                <CIcon :icon="cilPen"></CIcon>
-              </button>
-            </RouterLink>
-            <button class="btn btn-danger btn-sm" title="Видалити">
-              <CIcon :icon="cilX"></CIcon>
-            </button>
+            <EditButton :to="{name: 'articles.edit', params: {id: article.id}}"></EditButton>
+            <DeleteButton :url="`/article/${article.id}`" @deleted="deletedArticle(article.id)"></DeleteButton>
           </td>
         </tr>
       </tbody>
@@ -52,12 +45,13 @@
 </template>
 
 <script>
-import { CIcon } from '@coreui/icons-vue'
-import { cilPen, cilX } from '@coreui/icons'
 import { RouterLink } from 'vue-router'
 import Wrapper from '@/components/Wrapper'
-import Api from '@/Api'
+import Api from '@/lib/Api'
 import LaravelVuePagination from 'laravel-vue-pagination'
+import AddButton from "@/components/buttons/AddButton";
+import EditButton from "@/components/buttons/EditButton";
+import DeleteButton from "@/components/buttons/DeleteButton";
 
 export default {
   name: 'Articles',
@@ -68,16 +62,12 @@ export default {
     }
   },
   components: {
+    DeleteButton,
+    EditButton,
+    AddButton,
     Wrapper,
-    CIcon,
     RouterLink,
     LaravelVuePagination,
-  },
-  setup() {
-    return {
-      cilPen,
-      cilX,
-    }
   },
   mounted() {
     this.getArticles()
@@ -89,6 +79,9 @@ export default {
         this.isLoaded = true
       })
     },
+    deletedArticle(id) {
+      this.articles.data = this.articles.data.filter(article => article.id !== id)
+    }
   },
 }
 </script>

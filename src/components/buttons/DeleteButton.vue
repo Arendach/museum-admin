@@ -6,7 +6,7 @@
 <script>
 import { CIcon } from '@coreui/icons-vue'
 import { cilX } from '@coreui/icons'
-import Api from '@/Api'
+import Api from '@/lib/Api'
 
 export default {
   props: ['url'],

@@ -1,4 +1,4 @@
-import Api from '@/Api'
+import Api from '@/lib/Api'
 
 export default {
   namespaced: true,

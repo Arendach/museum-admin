@@ -14,7 +14,7 @@ export default [
       {
         component: 'CNavItem',
         name: 'Статті',
-        to: '/articles',
+        to: {name: 'articles.list'},
       },
       {
         component: 'CNavItem',
@@ -24,12 +24,12 @@ export default [
       {
         component: 'CNavItem',
         name: 'Люди',
-        to: { name: 'peoples.list' },
+        to: {name: 'peoples.list'},
       },
       {
         component: 'CNavItem',
         name: 'Країни',
-        to: { name: 'countries.list' },
+        to: {name: 'countries.list'},
       }
     ],
   },

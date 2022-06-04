@@ -10,7 +10,7 @@
 
 <script>
 import InputLang from '@/components/InputLang'
-import Api from '@/Api'
+import Api from '@/lib/Api'
 import Wrapper from '@/components/Wrapper'
 
 export default {

@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import mixins from '@/mixins'
+import mixins from '@/lib/mixins'
 import CKEditor from '@ckeditor/ckeditor5-vue'
 import Toaster from '@meforma/vue-toaster'
 import VueSweetalert2 from 'vue-sweetalert2'
@@ -10,8 +10,11 @@ import VueSweetalert2 from 'vue-sweetalert2'
 import CoreuiVue from '@coreui/vue'
 import CIcon from '@coreui/icons-vue'
 import { iconsSet as icons } from '@/assets/icons'
+import AddButton from "@/components/buttons/AddButton";
 
 const app = createApp(App)
+
+app.component('add-button', AddButton)
 app.use(store)
 app.use(router)
 app.use(CoreuiVue)

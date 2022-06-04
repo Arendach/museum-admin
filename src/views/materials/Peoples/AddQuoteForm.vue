@@ -8,7 +8,7 @@
 
 <script>
 import InputLang from '@/components/InputLang'
-import Api from '@/Api'
+import Api from '@/lib/Api'
 
 export default {
   name: 'AddQuoteForm',

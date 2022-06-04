@@ -2,6 +2,7 @@
   <div class="input-container">
     <label class="form-label">{{ label }}</label>
     <input :name="name" :value="item[name]" type="text" class="form-control">
+    <div class="invalid-feedback" :id="name + '_invalid'"></div>
   </div>
 </template>
 

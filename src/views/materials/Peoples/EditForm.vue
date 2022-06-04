@@ -65,7 +65,7 @@
 
 <script>
 import InputLang from '@/components/InputLang'
-import Api from '@/Api'
+import Api from '@/lib/Api'
 import Wrapper from '@/components/Wrapper'
 import {Tab, Tabs} from 'vue3-tabs-component'
 import EditButton from '@/components/buttons/EditButton'
