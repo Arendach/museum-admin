@@ -1,20 +1,30 @@
 <template>
   <Wrapper :loaded="loadedTags && loadedArticle">
-    <CForm id="editArticle">
-      <InputText label="Slug" :item="article" name="slug"></InputText>
-      <InputLang label="Назва статті" :item="article" name="title"></InputLang>
-      <TextareaLang label="Короткий опис" :item="article" name="short_description"></TextareaLang>
-      <EditorLang label="Опис" :item="article" name="description"></EditorLang>
-      <MultiSelect
-        label="Теги статті"
-        :options="mapMultiSelect(tags)"
-        :selected="mapMultiSelect(article.tags)"
-        name="tags"
-      ></MultiSelect>
-      <Checkbox name="is_active" label="Активна" :value="article.is_active"></Checkbox>
-      <Checkbox name="is_popular" label="Популярна" :value="article.is_popular"></Checkbox>
-      <CButton color="primary" @click="updateArticle">Зберегти</CButton>
-    </CForm>
+    <Tabs>
+      <Tab name="Інформація">
+        <CForm id="editArticle">
+          <InputText label="Slug" :item="article" name="slug"></InputText>
+          <InputLang label="Назва статті" :item="article" name="title"></InputLang>
+          <TextareaLang label="Короткий опис" :item="article" name="short_description"></TextareaLang>
+          <EditorLang label="Опис" :item="article" name="description"></EditorLang>
+          <MultiSelect
+            label="Теги статті"
+            :options="mapMultiSelect(tags)"
+            :selected="mapMultiSelect(article.tags)"
+            name="tags"
+          ></MultiSelect>
+          <Checkbox name="is_active" label="Активна" :value="article.is_active"></Checkbox>
+          <Checkbox name="is_popular" label="Популярна" :value="article.is_popular"></Checkbox>
+          <CButton color="primary" @click="updateArticle">Зберегти</CButton>
+        </CForm>
+      </Tab>
+      <Tab name="Фото">
+        <PictureField
+          :picture="article.picture"
+          :url="`/articles/change-picture/${$route.params.id}`"
+        ></PictureField>
+      </Tab>
+    </Tabs>
   </Wrapper>
 </template>
 
@@ -27,10 +37,13 @@ import Api from '@/lib/Api'
 import Wrapper from '@/components/Wrapper'
 import Checkbox from "@/components/Checkbox";
 import InputText from "@/components/InputText";
+import PictureField from "@/components/PictureField"
+import {Tabs, Tab} from "vue3-tabs-component";
 
 export default {
   name: 'EditForm',
   components: {
+    PictureField,
     InputText,
     Checkbox,
     InputLang,
@@ -38,6 +51,8 @@ export default {
     EditorLang,
     MultiSelect,
     Wrapper,
+    Tabs,
+    Tab,
   },
   data() {
     return {
