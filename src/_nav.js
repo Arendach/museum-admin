@@ -30,6 +30,11 @@ export default [
         component: 'CNavItem',
         name: 'Країни',
         to: {name: 'countries.list'},
+      },
+      {
+        component: 'CNavItem',
+        name: 'Зброя',
+        to: {name: 'weapons.list'},
       }
     ],
   },
