@@ -1,6 +1,13 @@
 <template>
-  <AddButton route="countries.add" label="Додати нову людину"></AddButton>
-  <DefaultTable edit-route="countries.edit" delete-url="/country" url="/countries" :header="header" :body="body"></DefaultTable>
+  <AddButton route="countries.add" label="Додати нову країну"></AddButton>
+  <DefaultTable
+    edit-route="countries.edit"
+    delete-url="/country"
+    url="/countries"
+    :header="header"
+    :body="body"
+    :filters="filters"
+  ></DefaultTable>
 </template>
 
 <script>
@@ -16,6 +23,14 @@ export default {
     },
     body(item) {
       return [item.id, item.title, item.code, item.slug]
+    },
+    filters() {
+      return [
+        null,
+        {field: 'title', type: 'input', term: 'like'},
+        {field: 'code', type: 'input', term: 'is'},
+        null
+      ]
     }
   }
 }

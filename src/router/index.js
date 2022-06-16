@@ -6,6 +6,7 @@ import articles from "@/router/articles"
 import tags from "@/router/tags"
 import counties from '@/router/countries'
 import weapons from "@/router/weapons"
+import videos from "@/router/videos"
 
 const routes = [
   {
@@ -26,6 +27,7 @@ const routes = [
       ...peoples,
       ...counties,
       ...weapons,
+      ...videos,
     ],
   },
 ]

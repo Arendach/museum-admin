@@ -24,6 +24,9 @@
           :url="`/articles/change-picture/${$route.params.id}`"
         ></PictureField>
       </Tab>
+      <Tab name="Відеоматеріали">
+        <VideoGallery :id="$route.params.id" model="Article"></VideoGallery>
+      </Tab>
     </Tabs>
   </Wrapper>
 </template>
@@ -39,10 +42,12 @@ import Checkbox from "@/components/Checkbox";
 import InputText from "@/components/InputText";
 import PictureField from "@/components/PictureField"
 import {Tabs, Tab} from "vue3-tabs-component";
+import VideoGallery from "@/components/Video/VideoGallery";
 
 export default {
   name: 'EditForm',
   components: {
+    VideoGallery,
     PictureField,
     InputText,
     Checkbox,

@@ -1,22 +1,22 @@
 export default [
   {
-    path: '/weapons',
-    name: 'weapons',
-    meta: {title: 'Зброя'},
-    redirect: '/weapons/list',
+    path: '/videos',
+    name: 'videos',
+    meta: {title: 'Відео'},
+    redirect: '/videos/list',
     component: () => import('@/views/RouterView'),
     children: [
       {
         path: 'list',
-        name: 'weapons.list',
+        name: 'videos.list',
         meta: {title: 'Список'},
-        component: () => import('@/views/materials/Weapons/List')
+        component: () => import('@/views/media/Videos/List')
       },
       {
         path: ':id/edit',
-        name: 'weapons.edit',
-        meta: {title: 'Редагування зброї'},
-        component: () => import('@/views/materials/Weapons/Edit')
+        name: 'videos.edit',
+        meta: {title: 'Редагування відео'},
+        component: () => import('@/views/media/Videos/Edit')
       },
       {
         path: 'add',

@@ -1,5 +1,5 @@
 import config from '@/lib/config'
-import formSerialize from '@/lib/serialize'
+import {serialize, jsonToQuery} from '@/lib/serialize'
 import FormErrorHandler from '@/lib/form-error-handler'
 
 export default {
@@ -11,7 +11,10 @@ export default {
       return config[key]
     },
     serialize(form) {
-      return formSerialize(form)
+      return serialize(form)
+    },
+    jsonToQuery(data){
+      return jsonToQuery(data)
     },
     successToast(message, options) {
       options = typeof options === 'object' ? options : {}

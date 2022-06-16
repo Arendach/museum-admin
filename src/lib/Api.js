@@ -1,3 +1,5 @@
+import {jsonToQuery} from "@/lib/serialize"
+
 const DefaultHeaders = {
   'Content-Type': 'application/json',
   'X-Requested-With': 'XMLHttpRequest',
@@ -20,8 +22,8 @@ const ResponseHandler = (res) => {
 }
 
 export default {
-  get(url, options) {
-    return fetch(this.apiUrl(url), {
+  get(url, body, options) {
+    return fetch(this.apiUrl(url, body), {
       method: 'GET',
       ...DefaultOptions,
       ...options,
@@ -53,7 +55,9 @@ export default {
     }).then(ResponseHandler)
   },
 
-  apiUrl(path) {
-    return `${process.env.VUE_APP_API_URL}${path}`
+  apiUrl(path, data) {
+    let query = jsonToQuery(data)
+
+    return `${process.env.VUE_APP_API_URL}${path}?${query}`
   },
 }

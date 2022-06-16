@@ -1,6 +1,22 @@
 import _ from 'lodash'
 
-export default function (form) {
+export const jsonToQuery = function (obj, prefix) {
+  let str = [], p
+  for (p in obj) {
+    if (obj.hasOwnProperty(p)) {
+      let k = prefix ? prefix + "[" + p + "]" : p,
+        v = obj[p]
+      str.push(
+        v !== null && typeof v === "object"
+          ? jsonToQuery(v, k)
+          : k + "=" + encodeURIComponent(v)
+      )
+    }
+  }
+  return str.join("&")
+};
+
+export const serialize = function (form) {
   let current, entries, item, key, output, value
   output = {}
   entries = new FormData(form).entries()
@@ -23,3 +39,5 @@ export default function (form) {
   }
   return output
 }
+
+export default {serialize, jsonToQuery}

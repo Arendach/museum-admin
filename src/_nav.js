@@ -38,4 +38,17 @@ export default [
       }
     ],
   },
+  {
+    component: 'CNavGroup',
+    name: 'Медіа',
+    to: '/media',
+    icon: 'cil-drop',
+    items: [
+      {
+        component: 'CNavItem',
+        name: 'Відеоматеріали',
+        to: {name: 'videos.list'},
+      },
+    ],
+  },
 ]
