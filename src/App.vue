@@ -9,8 +9,9 @@ export default {
   name: 'App',
   mounted() {
     this.loadCountries()
+    this.loadTags()
   },
-  methods: mapActions(['loadCountries'])
+  methods: mapActions(['loadCountries', 'loadTags'])
 }
 </script>
 

@@ -27,7 +27,7 @@ export default [
             path: ':id',
             name: 'peoples.edit',
             meta: {title: 'Редагування людини'},
-            component: () => import('@/views/materials/Peoples/EditForm'),
+            component: () => import('@/views/materials/Peoples/Edit'),
           },
           {
             path: ':id/quotes/edit/:quote_id',

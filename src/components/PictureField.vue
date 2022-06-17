@@ -1,6 +1,6 @@
 <template>
   <div class="form-group mb-15">
-    <label>Оберіть нове зображення</label>
+    <label>{{ label }}</label>
     <input type="file" class="form-control" v-on:change="uploadPicture">
   </div>
 
@@ -21,8 +21,16 @@ export default {
         alt: null
       }
     },
-    url: {
+    label: {
       type: String,
+      default: 'Оберіть нове зображення',
+    },
+    model: {
+      type: String,
+      required: true,
+    },
+    id: {
+      type: [Number, String],
       required: true,
     }
   },
@@ -42,15 +50,16 @@ export default {
       let data = new FormData
 
       data.append('picture', picture)
+      data.append('model', this.model)
+      data.append('id', this.id)
 
-      fetch(this.apiUrl(this.url), {
+      fetch(this.apiUrl('/pictures/change'), {
         method: 'POST',
         body: data,
         mode: 'cors',
         cache: 'no-cache',
         credentials: 'same-origin',
         headers: {
-          //'Content-Type': 'application/json',
           'X-Requested-With': 'XMLHttpRequest',
         },
       })

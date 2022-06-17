@@ -47,7 +47,8 @@
             <td>{{ quote.id }}</td>
             <td>{{ quote.title }}</td>
             <td class="actions">
-              <EditButton :to="{name: 'peoples.quotes.edit', params: {id: $route.params.id, quote_id: quote.id}}"></EditButton>
+              <EditButton
+                :to="{name: 'peoples.quotes.edit', params: {id: $route.params.id, quote_id: quote.id}}"></EditButton>
               <DeleteButton :url="`/quote/${quote.id}`" @deleted="deleteQuote(quote.id)"></DeleteButton>
             </td>
           </tr>
@@ -58,6 +59,9 @@
           </tr>
           </tbody>
         </table>
+      </Tab>
+      <Tab name="Фото">
+        <PictureField :id="people.id" model="People" :picture="people.picture"></PictureField>
       </Tab>
     </Tabs>
   </Wrapper>
@@ -70,8 +74,9 @@ import Wrapper from '@/components/Wrapper'
 import {Tab, Tabs} from 'vue3-tabs-component'
 import EditButton from '@/components/buttons/EditButton'
 import DeleteButton from '@/components/buttons/DeleteButton'
-import VSelect from "@/components/VSelect";
-import {mapGetters} from "vuex";
+import VSelect from "@/components/VSelect"
+import {mapGetters} from "vuex"
+import PictureField from "@/components/PictureField"
 
 export default {
   name: 'EditForm',
@@ -83,6 +88,7 @@ export default {
     EditButton,
     DeleteButton,
     VSelect,
+    PictureField,
   },
   data() {
     return {
@@ -95,14 +101,14 @@ export default {
   },
   methods: {
     loadPeople() {
-      Api.get(`/people/${this.$route.params.id}`).then((res) => {
+      Api.get(`/peoples/${this.$route.params.id}`).then((res) => {
         this.people = res.data
       })
     },
     updatePeople() {
       let data = this.serialize(document.querySelector('#editPeople'))
 
-      Api.put(`/people/${this.people.id}`, data).then(() => this.successToast('Дані збережено'))
+      Api.put(`/peoples/${this.people.id}`, data).then(() => this.successToast('Дані збережено'))
     },
     deleteQuote(id) {
       this.people.quotes = this.people.quotes.filter(quote => quote.id !== id)

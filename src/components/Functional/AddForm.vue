@@ -1,30 +1,34 @@
 <template>
   <Wrapper :loaded="true">
     <CForm id="createForm">
-      <div v-for="field in fields">
-        <InputLang
-          v-if="field.component === 'InputLang'"
-          :label="field.label"
-          :name="field.name"
-        ></InputLang>
-        <EditorLang
-          v-else-if="field.component === 'EditorLang'"
-          :label="field.label"
-          :name="field.name"
-        ></EditorLang>
-        <InputText
-          v-else-if="field.component === 'InputText'"
-          :label="field.label"
-          :name="field.name"
-        ></InputText>
-        <MultiSelect
-          v-else-if="field.component === 'MultiSelect'"
-          :label="field.label"
-          :options="mapMultiSelect(dynamic(field.options))"
-          :selected="[]"
-          name="countries"
-        ></MultiSelect>
-      </div>
+      <Tabs>
+        <Tab v-for="tab in tabFields" :name="tab.title">
+          <div v-for="field in tab.items">
+            <InputLang
+              v-if="field.component === 'InputLang'"
+              :label="field.label"
+              :name="field.name"
+            ></InputLang>
+            <EditorLang
+              v-else-if="field.component === 'EditorLang'"
+              :label="field.label"
+              :name="field.name"
+            ></EditorLang>
+            <InputText
+              v-else-if="field.component === 'InputText'"
+              :label="field.label"
+              :name="field.name"
+            ></InputText>
+            <MultiSelect
+              v-else-if="field.component === 'MultiSelect'"
+              :label="field.label"
+              :options="mapMultiSelect(dynamic(field.options))"
+              :selected="[]"
+              name="countries"
+            ></MultiSelect>
+          </div>
+        </Tab>
+      </Tabs>
       <CButton color="primary" @click="create">Зберегти</CButton>
     </CForm>
   </Wrapper>
@@ -53,6 +57,10 @@ export default {
     fields: {
       type: Array,
       default: [],
+    },
+    tabs: {
+      type: Boolean,
+      default: false,
     }
   },
   components: {
@@ -62,7 +70,21 @@ export default {
     InputLang,
     Wrapper
   },
-  computed: mapGetters(['countries']),
+  computed: {
+    ...mapGetters(['countries']),
+    tabFields() {
+      if (!this.tabs) {
+        return [
+          {
+            title: 'Основна інформація',
+            items: this.fields
+          }
+        ]
+      }
+
+      return this.fields
+    }
+  },
   methods: {
     create() {
       let data = this.serialize(document.querySelector('#createForm'))

@@ -16,7 +16,7 @@ export default [
         path: 'edit/:id',
         name: 'articles.edit',
         meta: {title: 'Редагування статті'},
-        component: () => import('@/views/materials/Articles/EditForm.vue'),
+        component: () => import('@/views/materials/Articles/Edit.vue'),
       },
       {
         path: 'add',

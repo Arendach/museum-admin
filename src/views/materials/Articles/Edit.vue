@@ -1,5 +1,5 @@
 <template>
-<EditForm url="/weapons" :fields="fields" :tabs="true"/>
+  <EditForm :fields="fields" url="/articles" :tabs="true"></EditForm>
 </template>
 
 <script>
@@ -16,15 +16,17 @@ export default {
           items: [
             {component: 'InputText', name: 'slug', label: 'Slug'},
             {component: 'InputLang', name: 'title', label: 'Назва'},
+            {component: 'TextareaLang', name: 'short_description', label: 'Короткий опис'},
             {component: 'EditorLang', name: 'description', label: 'Опис'},
-            {component: 'InputText', name: 'date', label: 'Перше впоминання'},
-            {component: 'MultiSelect', name: 'countries', label: 'Країни використовують', options: 'countries'},
+            {component: 'MultiSelect', name: 'tags', label: 'Теги', options: 'tags'},
+            {component: 'Checkbox', name: 'is_active', label: 'Активна'},
+            {component: 'Checkbox', name: 'is_popular', label: 'Популярна'},
           ]
         },
         {
           title: 'Зображення',
           items: [
-            {component: 'PictureField', name: 'picture', label: 'Зображення', model: 'Weapon'}
+            {component: 'PictureField', model: 'Article'}
           ]
         }
       ]
