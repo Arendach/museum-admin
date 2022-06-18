@@ -15,14 +15,14 @@
 
 <script>
 import InputLang from '@/components/InputLang'
-import InputText from "@/components/InputText";
-import EditorLang from "@/components/EditorLang";
-import VSelect from "@/components/VSelect";
+import InputText from "@/components/InputText"
+import EditorLang from "@/components/EditorLang"
+import VSelect from "@/components/VSelect"
 import Api from '@/lib/Api'
-import Wrapper from "@/components/Wrapper";
-import TextareaLang from "@/components/TextareaLang";
-import MultiSelect from "@/components/MultiSelect";
-import Checkbox from "@/components/Checkbox";
+import Wrapper from "@/components/Wrapper"
+import TextareaLang from "@/components/TextareaLang"
+import MultiSelect from "@/components/MultiSelect"
+import Checkbox from "@/components/Checkbox"
 
 export default {
   name: 'AddForm',
@@ -48,7 +48,7 @@ export default {
     createArticle() {
       let data = this.serialize(document.querySelector('#createArticle'))
 
-      Api.post('/article', data).then(() => {
+      Api.post('/articles', data).then(() => {
         this.successToast('Дані збережено')
         this.$router.push({name: 'articles.list'})
       })
