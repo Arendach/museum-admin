@@ -26,6 +26,12 @@ export default {
           items: [
             {component: 'PictureField', name: 'picture', label: 'Зображення', model: 'Weapon'}
           ]
+        },
+        {
+          title: 'Відеоматеріали',
+          items: [
+            {component: 'VideoField', name: 'videos', model: 'Weapon'}
+          ]
         }
       ]
     }

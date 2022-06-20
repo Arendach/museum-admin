@@ -49,9 +49,18 @@
               :options="dynamic(field.options)"
               :value="item[field.name]"
             ></VSelect>
-            <div v-else-if="field.component === 'ReactiveComponent'">
-              <component :is="field.reactive"></component>
-            </div>
+            <TextareaLang
+              v-else-if="field.component === 'TextareaLang'"
+              :label="field.label"
+              :name="field.name"
+              :item="item"
+            ></TextareaLang>
+            <VideoField
+              v-else-if="field.component === 'VideoField'"
+              :videos="item[field.name] || []"
+              :model="field.model"
+              :model-id="item.id"
+            ></VideoField>
           </div>
         </Tab>
       </Tabs>
@@ -72,6 +81,8 @@ import {mapGetters} from "vuex"
 import {Tabs, Tab} from "vue3-tabs-component"
 import Checkbox from "@/components/Checkbox"
 import VSelect from "@/components/VSelect"
+import TextareaLang from "@/components/TextareaLang"
+import VideoField from "@/components/VideoField";
 
 export default {
   name: 'EditForm',
@@ -90,6 +101,8 @@ export default {
     }
   },
   components: {
+    VideoField,
+    TextareaLang,
     Checkbox,
     PictureField,
     EditorLang,

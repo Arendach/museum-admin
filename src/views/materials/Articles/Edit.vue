@@ -26,9 +26,15 @@ export default {
         {
           title: 'Зображення',
           items: [
-            {component: 'PictureField', model: 'Article'}
+            {component: 'PictureField', model: 'Article', name: 'picture'}
           ]
-        }
+        },
+        {
+          title: 'Відеогалерея',
+          items: [
+            {component: 'VideoField', name: 'videos', model: 'Article'}
+          ]
+        },
       ]
     }
   }

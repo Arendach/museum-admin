@@ -5,7 +5,7 @@
       <th>Назва</th>
       <th>Відео</th>
       <th>Тип</th>
-      <th></th>
+      <th>Дії</th>
     </tr>
     <tr>
       <td>
@@ -14,7 +14,7 @@
       <td></td>
       <td>
         <select class="form-control" v-model="type">
-          <option :value="null">Вибрати тип</option>
+          <option :value="null">Нічого не обрано</option>
           <option value="youtube">Відео з youtube</option>
           <option value="default">Відео з сервера</option>
         </select>
@@ -24,9 +24,13 @@
     </thead>
     <tbody>
     <tr v-for="video in videos">
-      <td>{{ video.title }}</td>
+      <td>
+        <a :href="video.url">
+          {{ video.title }}
+        </a>
+      </td>
       <td>{{ video.path }}</td>
-      <td>{{ video.type }}</td>
+      <td>{{ video.type === 'youtube' ? 'Відео з youtube' : 'Відео з сервера' }}</td>
       <td>
         <EditButton :to="{name: 'videos.edit', params: {id: video.id}}"></EditButton>
         <DeleteButton :url="`/videos/${video.id}`"></DeleteButton>
@@ -38,8 +42,8 @@
 
 <script>
 import Api from "@/lib/Api"
-import EditButton from "@/components/buttons/EditButton";
-import DeleteButton from "@/components/buttons/DeleteButton";
+import EditButton from "@/components/buttons/EditButton"
+import DeleteButton from "@/components/buttons/DeleteButton"
 
 export default {
   name: 'List',

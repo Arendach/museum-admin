@@ -20,7 +20,7 @@ export default [
       },
       {
         path: 'add',
-        name: 'weapons.add',
+        name: 'videos.add',
         meta: {title: 'Нова зброя'},
         component: () => import('@/views/materials/Weapons/Add')
       },

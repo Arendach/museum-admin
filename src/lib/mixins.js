@@ -3,6 +3,11 @@ import {serialize, jsonToQuery} from '@/lib/serialize'
 import FormErrorHandler from '@/lib/form-error-handler'
 
 export default {
+  data(){
+    return {
+      timerStore: null
+    }
+  },
   methods: {
     apiUrl(path) {
       return `${process.env.VUE_APP_API_URL}${path}`
@@ -38,6 +43,10 @@ export default {
       response.json().then(res => {
         return FormErrorHandler(res)
       })
+    },
+    timer(callback) {
+      clearTimeout(this.timerStore)
+      this.timerStore = setTimeout(callback, 700)
     }
   },
 }

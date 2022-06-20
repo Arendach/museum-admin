@@ -2,7 +2,9 @@
   <div class="input-container">
     <div class="row">
       <div class="col-6">
-        <label class="form-label">{{ label }}</label>
+        <label class="form-label">
+          <span class="text-danger" v-if="required">*</span> {{ label }}
+        </label>
       </div>
       <div class="col-6" style="text-align: right">
         <span
@@ -47,12 +49,22 @@
 export default {
   name: 'InputLang',
   props: {
-    label: String,
+    label: {
+      type: String,
+      required: true,
+    },
     item: {
       type: Object,
       default: {}
     },
-    name: String
+    name: {
+      type: String,
+      required: true,
+    },
+    required: {
+      type: Boolean,
+      default: false,
+    }
   },
   data() {
     return {
