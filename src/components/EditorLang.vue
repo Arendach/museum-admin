@@ -16,7 +16,7 @@
           }"
           @click="selected = lang.key"
         >
-          <img style="width: 15px" :src="`/flags/${lang.key}.svg`" />
+          <img style="width: 15px" :src="`/flags/${lang.key}.svg`"/>
         </span>
       </div>
     </div>
@@ -43,6 +43,7 @@
 
 <script>
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import UploadAdapter from "@/lib/UploadAdapter"
 
 export default {
   name: 'EditorLang',
@@ -65,6 +66,7 @@ export default {
       languages: [],
       editorConfig: {
         placeholder: 'Enter text',
+        extraPlugins: [this.uploader]
       },
       editorData: {},
     }
@@ -82,6 +84,11 @@ export default {
     setEditorData() {
       for (let lang of this.languages) {
         this.editorData[lang.key] = this.item[this.name + lang.postfix]
+      }
+    },
+    uploader(editor) {
+      return editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+        return new UploadAdapter(loader)
       }
     },
   },
