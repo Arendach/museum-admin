@@ -61,6 +61,7 @@ export default {
         credentials: 'same-origin',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
+          'Authorization': `Bearer ${window.localStorage.getItem('access_token')}`,
         },
       })
         .then(res => res.json())

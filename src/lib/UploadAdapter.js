@@ -25,7 +25,9 @@ export default class UploadAdapter {
   _initRequest() {
     const xhr = this.xhr = new XMLHttpRequest()
 
-    xhr.open('POST', 'http://museum.online/api/admin/pictures/upload', true)
+    xhr.open('POST', `${process.env.VUE_APP_API_URL}/pictures/upload`, true)
+    xhr.setRequestHeader('Authorization', `Bearer ${window.localStorage.getItem('access_token')}`)
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
     xhr.responseType = 'json'
   }
 

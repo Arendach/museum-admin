@@ -29,6 +29,7 @@
         v-model="this.editorData[lang.key]"
         :editor="editor"
         :config="editorConfig"
+        @ready="uploader"
       ></ckeditor>
     </div>
     <input
@@ -66,7 +67,6 @@ export default {
       languages: [],
       editorConfig: {
         placeholder: 'Enter text',
-        extraPlugins: [this.uploader]
       },
       editorData: {},
     }
