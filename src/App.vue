@@ -11,10 +11,15 @@ export default {
     this.loadCountries()
     this.loadTags()
   },
-  methods: mapActions(['loadCountries', 'loadTags'])
+  methods: mapActions(['loadCountries', 'loadTags']),
+  beforeMount() {
+    if (!window.localStorage.getItem('access_token')){
+      this.$router.push({name: 'auth.login'})
+    }
+  }
 }
 </script>
 
 <style lang="scss">
-@import 'styles/style';
+@import 'styles/style'
 </style>

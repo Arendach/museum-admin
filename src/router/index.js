@@ -7,8 +7,10 @@ import tags from "@/router/tags"
 import counties from '@/router/countries'
 import weapons from "@/router/weapons"
 import videos from "@/router/videos"
+import auth from "@/router/auth"
 
 const routes = [
+  ...auth,
   {
     path: '/',
     component: DefaultLayout,

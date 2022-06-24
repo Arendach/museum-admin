@@ -6,6 +6,7 @@ const DefaultHeaders = {
   'X-Pagination-Limit': process.env.VUE_APP_API_LIMIT,
   'X-Order-Field': 'id',
   'X-Order-Direction': 'desc',
+  'Authorization': `Bearer ${window.localStorage.getItem('access_token')}`
 }
 
 const DefaultOptions = {
@@ -16,6 +17,10 @@ const DefaultOptions = {
 }
 
 const ResponseHandler = (res) => {
+  if (res.status === 401 && window.location.pathname !== '/login') {
+    window.location.href = '/login'
+  }
+
   if (!res.ok) throw res
 
   return res.json()
