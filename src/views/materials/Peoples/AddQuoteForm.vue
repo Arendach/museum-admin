@@ -19,7 +19,7 @@ export default {
 
       let data = this.serialize(form)
 
-      Api.post('/quote/create', data).then(() => {
+      Api.post('/quotes', data).then(() => {
         this.successToast('Дані збережено')
         this.$router.push(`/peoples/edit/${this.$route.params.id}`)
       })

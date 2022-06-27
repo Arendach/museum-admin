@@ -16,13 +16,13 @@ export default [
         path: ':id/edit',
         name: 'countries.edit',
         meta: {title: 'Редагування країни'},
-        component: () => import('@/views/materials/Countries/EditForm')
+        component: () => import('@/views/materials/Countries/Edit')
       },
       {
         path: 'add',
         name: 'countries.add',
         meta: {title: 'Нова країна'},
-        component: () => import('@/views/materials/Countries/AddForm')
+        component: () => import('@/views/materials/Countries/Add')
       }
     ]
   }

@@ -16,13 +16,13 @@ export default [
         path: 'edit/:id',
         name: 'articles.edit',
         meta: {title: 'Редагування статті'},
-        component: () => import('@/views/materials/Articles/Edit.vue'),
+        component: () => import('@/views/materials/Articles/Edit'),
       },
       {
         path: 'add',
         name: 'articles.add',
         meta: {title: 'Нова стаття'},
-        component: () => import('@/views/materials/Articles/AddForm')
+        component: () => import('@/views/materials/Articles/Add')
       }
     ]
   },

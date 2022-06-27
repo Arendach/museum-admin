@@ -4,28 +4,60 @@
       <Tabs>
         <Tab v-for="tab in tabFields" :name="tab.title">
           <div v-for="field in tab.items">
-            <InputLang
-              v-if="field.component === 'InputLang'"
+            <InputText
+              v-if="field.component === 'InputText'"
               :label="field.label"
               :name="field.name"
-            ></InputLang>
+            />
+            <InputLang
+              v-else-if="field.component === 'InputLang'"
+              :label="field.label"
+              :name="field.name"
+            />
             <EditorLang
               v-else-if="field.component === 'EditorLang'"
               :label="field.label"
               :name="field.name"
-            ></EditorLang>
-            <InputText
-              v-else-if="field.component === 'InputText'"
-              :label="field.label"
-              :name="field.name"
-            ></InputText>
+            />
             <MultiSelect
               v-else-if="field.component === 'MultiSelect'"
               :label="field.label"
-              :options="mapMultiSelect(dynamic(field.options))"
-              :selected="[]"
-              name="countries"
-            ></MultiSelect>
+              :name="field.name"
+              :options="typeof field.options === 'object' ? field.options : dynamic(field.options)"
+            />
+            <PictureField
+              v-else-if="field.component === 'PictureField'"
+              :picture="{}"
+              :label="field.label"
+              :model="field.model"
+              :id="item.id"
+            />
+            <Checkbox
+              v-else-if="field.component === 'Checkbox'"
+              :label="field.label"
+              :name="field.name"
+            />
+            <VSelect
+              v-else-if="field.component === 'VSelect'"
+              :label="field.label"
+              :name="field.name"
+              :options="typeof field.options === 'object' ? field.options : dynamic(field.options)"
+            />
+            <TextareaLang
+              v-else-if="field.component === 'TextareaLang'"
+              :label="field.label"
+              :name="field.name"
+              :item="item"
+            />
+            <VideoField
+              v-else-if="field.component === 'VideoField'"
+              :videos="[]"
+              :model="field.model"
+              :model-id="item.id"
+            />
+            <SeoField
+              v-else-if="field.component === 'SeoField'"
+            />
           </div>
         </Tab>
       </Tabs>
@@ -38,10 +70,16 @@
 import InputLang from '@/components/InputLang'
 import Api from '@/lib/Api'
 import Wrapper from "@/components/Wrapper"
-import EditorLang from "@/components/EditorLang";
+import EditorLang from "@/components/EditorLang"
 import MultiSelect from "@/components/MultiSelect"
 import {mapGetters} from "vuex"
-import InputText from "@/components/InputText";
+import InputText from "@/components/InputText"
+import PictureField from "@/components/PictureField"
+import Checkbox from "@/components/Checkbox"
+import VSelect from "@/components/VSelect"
+import TextareaLang from "@/components/TextareaLang"
+import VideoField from "@/components/VideoField"
+import SeoField from "@/components/fields/SeoField"
 
 export default {
   name: 'AddForm',
@@ -50,7 +88,7 @@ export default {
       type: String,
       required: true
     },
-    backRoute: {
+    editRoute: {
       type: String,
       required: true
     },
@@ -63,15 +101,26 @@ export default {
       default: false,
     }
   },
+  data() {
+    return {
+      item: {}
+    }
+  },
   components: {
     InputText,
     MultiSelect,
     EditorLang,
     InputLang,
-    Wrapper
+    Wrapper,
+    PictureField,
+    Checkbox,
+    VSelect,
+    TextareaLang,
+    VideoField,
+    SeoField,
   },
   computed: {
-    ...mapGetters(['countries']),
+    ...mapGetters(['countries', 'tags']),
     tabFields() {
       if (!this.tabs) {
         return [
@@ -90,9 +139,9 @@ export default {
       let data = this.serialize(document.querySelector('#createForm'))
 
       Api.post(this.url, data)
-        .then(() => {
+        .then((res) => {
           this.successToast('Дані збережено')
-          this.$router.push({name: this.backRoute})
+          this.$router.push({name: this.editRoute, params: {id: res.data.id}})
         })
         .catch(err => this.showErrors(err))
     },

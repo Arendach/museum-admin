@@ -1,5 +1,10 @@
 <template>
-  <AddForm url="/weapons" back-route="weapons.list" :fields="fields" :tabs="true"></AddForm>
+  <AddForm
+    url="/weapons"
+    edit-route="weapons.edit"
+    :fields="fields"
+    :tabs="false"
+  />
 </template>
 
 <script>
@@ -11,22 +16,11 @@ export default {
   data() {
     return {
       fields: [
-        {
-          title: 'Основна інформація',
-          items: [
-            {component: 'InputText', name: 'slug', label: 'Slug'},
-            {component: 'InputLang', name: 'title', label: 'Назва'},
-            {component: 'EditorLang', name: 'description', label: 'Опис'},
-            {component: 'InputText', name: 'date', label: 'Перше впоминання'},
-            {component: 'MultiSelect', name: 'countries', label: 'Країни використовують', options: 'countries'},
-          ]
-        },
-        {
-          title: 'Зображення',
-          items: [
-            {component: 'Image', label: 'Зображення'}
-          ],
-        }
+        {component: 'InputText', name: 'slug', label: 'Slug'},
+        {component: 'InputLang', name: 'title', label: 'Назва'},
+        {component: 'EditorLang', name: 'description', label: 'Опис'},
+        {component: 'InputText', name: 'date', label: 'Перше впоминання'},
+        {component: 'MultiSelect', name: 'countries', label: 'Країни використовують', options: 'countries'},
       ]
     }
   }

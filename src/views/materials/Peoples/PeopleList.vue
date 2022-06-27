@@ -1,11 +1,12 @@
 <template>
-  <div style="text-align: right; margin-bottom: 24px">
-    <router-link :to="{name: 'peoples.add'}" class="btn btn-primary">
-      Додати нову людину
-    </router-link>
-  </div>
-
-  <DefaultTable edit-route="peoples.edit" url="/peoples" :header="header" :body="body"></DefaultTable>
+  <DefaultTable
+    edit-route="peoples.edit"
+    add-route="peoples.add"
+    url="/peoples"
+    :header="header"
+    :body="body"
+    :filters="filters"
+  ></DefaultTable>
 </template>
 
 <script>
@@ -19,6 +20,11 @@ export default {
   methods: {
     header: () => ['ID', 'Імя', 'Країна'],
     body: (item) => [item.id, item.name, (item.country?.title ?? 'Не обрано')],
+    filters: () => [
+      {type: 'input', term: 'is', field: 'id'},
+      {type: 'input', term: 'like', field: 'title'},
+      {type: 'select', term: 'is', field: 'country_id', options: 'countries'},
+    ]
   },
 }
 </script>

@@ -16,7 +16,7 @@ export default [
         path: 'add',
         name: 'peoples.add',
         meta: {title: 'Нова людина'},
-        component: () => import('@/views/materials/Peoples/AddForm'),
+        component: () => import('@/views/materials/Peoples/Add'),
       },
       {
         path: 'edit',

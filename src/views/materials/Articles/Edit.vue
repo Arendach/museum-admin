@@ -35,6 +35,12 @@ export default {
             {component: 'VideoField', name: 'videos', model: 'Article'}
           ]
         },
+        {
+          title: 'СЕО',
+          items: [
+            {component: 'SeoField'}
+          ]
+        }
       ]
     }
   }

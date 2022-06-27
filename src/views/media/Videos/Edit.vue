@@ -1,5 +1,5 @@
 <template>
-  <EditForm url="/videos" :fields="fields" :tabs="false"></EditForm>
+  <EditForm url="/videos" :fields="fields" :tabs="true"></EditForm>
 </template>
 
 <script>
@@ -11,10 +11,21 @@ export default {
   data() {
     return {
       fields: [
-        {component: 'InputLang', name: 'title', label: 'Назва'},
-        {component: 'EditorLang', name: 'description', label: 'Опис'},
-        {component: 'InputText', name: 'source', label: 'Джерело (url)'},
-        {component: 'InputLang', name: 'source_title', label: 'Джерело (текст)'},
+        {
+          title: 'Основана інформація',
+          items: [
+            {component: 'InputLang', name: 'title', label: 'Назва'},
+            {component: 'EditorLang', name: 'description', label: 'Опис'},
+            {component: 'InputText', name: 'source', label: 'Джерело (url)'},
+            {component: 'InputLang', name: 'source_title', label: 'Джерело (текст)'},
+          ]
+        },
+        {
+          title: 'Сео',
+          items: [
+            {component: 'SeoField'}
+          ]
+        }
       ]
     }
   }

@@ -1,8 +1,7 @@
 <template>
-  <AddButton route="countries.add" label="Додати нову країну"></AddButton>
   <DefaultTable
     edit-route="countries.edit"
-    delete-url="/country"
+    add-route="countries.add"
     url="/countries"
     :header="header"
     :body="body"
@@ -11,8 +10,8 @@
 </template>
 
 <script>
-import DefaultTable from "@/components/DefaultTable";
-import AddButton from "@/components/buttons/AddButton";
+import DefaultTable from "@/components/DefaultTable"
+import AddButton from "@/components/buttons/AddButton"
 
 export default {
   name: 'CountriesList',
@@ -26,10 +25,10 @@ export default {
     },
     filters() {
       return [
-        null,
+        {field: 'id', type: 'input', term: 'is'},
         {field: 'title', type: 'input', term: 'like'},
         {field: 'code', type: 'input', term: 'is'},
-        null
+        {field: 'slug', type: 'input', term: 'like'},
       ]
     }
   }

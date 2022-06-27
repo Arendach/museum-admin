@@ -9,58 +9,62 @@
               :label="field.label"
               :item="item"
               :name="field.name"
-            ></InputText>
+            />
             <InputLang
               v-else-if="field.component === 'InputLang'"
               :label="field.label"
               :item="item"
               :name="field.name"
-            ></InputLang>
+            />
             <EditorLang
               v-else-if="field.component === 'EditorLang'"
               :label="field.label"
               :item="item"
               :name="field.name"
-            ></EditorLang>
+            />
             <MultiSelect
               v-else-if="field.component === 'MultiSelect'"
               :label="field.label"
               :name="field.name"
               :options="mapMultiSelect(dynamic(field.options))"
               :selected="mapMultiSelect(item[field.name])"
-            ></MultiSelect>
+            />
             <PictureField
               v-else-if="field.component === 'PictureField'"
               :picture="item[field.name]"
               :label="field.label"
               :model="field.model"
               :id="item.id"
-            ></PictureField>
+            />
             <Checkbox
               v-else-if="field.component === 'Checkbox'"
               :label="field.label"
               :name="field.name"
               :value="item[field.name]"
-            ></Checkbox>
+            />
             <VSelect
               v-else-if="field.component === 'VSelect'"
               :label="field.label"
               :name="field.name"
-              :options="dynamic(field.options)"
+              :options="typeof field.options === 'object' ? field.options : dynamic(field.options)"
               :value="item[field.name]"
-            ></VSelect>
+            />
             <TextareaLang
               v-else-if="field.component === 'TextareaLang'"
               :label="field.label"
               :name="field.name"
               :item="item"
-            ></TextareaLang>
+            />
             <VideoField
               v-else-if="field.component === 'VideoField'"
               :videos="item[field.name] || []"
               :model="field.model"
               :model-id="item.id"
-            ></VideoField>
+            />
+            <SeoField
+              v-else-if="field.component === 'SeoField'"
+              :item="item"
+            />
           </div>
         </Tab>
       </Tabs>
@@ -82,7 +86,8 @@ import {Tabs, Tab} from "vue3-tabs-component"
 import Checkbox from "@/components/Checkbox"
 import VSelect from "@/components/VSelect"
 import TextareaLang from "@/components/TextareaLang"
-import VideoField from "@/components/VideoField";
+import VideoField from "@/components/VideoField"
+import SeoField from "@/components/fields/SeoField"
 
 export default {
   name: 'EditForm',
@@ -111,6 +116,7 @@ export default {
     Wrapper,
     MultiSelect,
     VSelect,
+    SeoField,
     Tabs,
     Tab,
   },

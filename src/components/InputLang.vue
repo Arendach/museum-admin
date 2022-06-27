@@ -3,7 +3,9 @@
     <div class="row">
       <div class="col-6">
         <label class="form-label">
-          <span class="text-danger" v-if="required">*</span> {{ label }}
+          <span class="text-danger" v-if="required">*</span>
+          {{ label }}
+          <span class="hint" v-if="hint !== null" v-c-tooltip="hint"> ? </span>
         </label>
       </div>
       <div class="col-6" style="text-align: right">
@@ -39,7 +41,7 @@
     <input
       v-for="field in fields"
       :key="field.name"
-      :name="field.name"
+      :name="hiddenInputName(field.name)"
       :value="field.value"
       type="hidden">
   </div>
@@ -64,6 +66,14 @@ export default {
     required: {
       type: Boolean,
       default: false,
+    },
+    wrapper: {
+      type: String,
+      default: null,
+    },
+    hint: {
+      type: String,
+      default: null,
     }
   },
   data() {
@@ -91,6 +101,11 @@ export default {
 
         return field
       })
+    },
+    hiddenInputName(name) {
+      return this.wrapper ?
+        `${this.wrapper}[${name}]`
+        : name
     }
   }
 }
@@ -99,5 +114,17 @@ export default {
 <style>
 .input-container {
   margin-bottom: 15px;
+}
+
+.hint {
+  border-radius: 12px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: #3891ff;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
 }
 </style>

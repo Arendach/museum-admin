@@ -49,7 +49,7 @@
             <td class="actions">
               <EditButton
                 :to="{name: 'peoples.quotes.edit', params: {id: $route.params.id, quote_id: quote.id}}"></EditButton>
-              <DeleteButton :url="`/quote/${quote.id}`" @deleted="deleteQuote(quote.id)"></DeleteButton>
+              <DeleteButton :url="`/quotes/${quote.id}`" @deleted="deleteQuote(quote.id)"></DeleteButton>
             </td>
           </tr>
           <tr v-else>
