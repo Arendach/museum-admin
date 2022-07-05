@@ -22,6 +22,9 @@ export default {
           items: [
             {component: 'InputText', name: 'slug', label: 'Slug'},
             {component: 'InputLang', name: 'title', label: 'Назва тегу'},
+            {component: 'EditorLang', name: 'description', label: 'Опис'},
+            {component: 'Checkbox', name: 'is_active', label: 'Активний'},
+            {component: 'Checkbox', name: 'is_top', label: 'В топі'},
           ]
         },
         {

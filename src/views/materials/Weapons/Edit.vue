@@ -22,6 +22,12 @@ export default {
           ]
         },
         {
+          title: 'Сео',
+          items: [
+            {component: 'SeoField'}
+          ]
+        },
+        {
           title: 'Зображення',
           items: [
             {component: 'PictureField', name: 'picture', label: 'Зображення', model: 'Weapon'}
