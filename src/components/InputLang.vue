@@ -94,7 +94,7 @@ export default {
   },
   methods: {
     updateItem(item) {
-      let content = this.$el.querySelector(`#${item}`).innerHTML
+      let content = this.$el.querySelector(`#${item}`).innerText
 
       this.fields.map(field => {
         if (field.name === item) field.value = content

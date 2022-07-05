@@ -23,6 +23,14 @@
     hint="Keywords або ключові слова, по них буде проводитися пошук, писати ключові слова через кому"
   />
 
+  <InputLang
+    name="h1"
+    wrapper="seo"
+    label="Тег H1"
+    :item="seo"
+    hint="Сео тег h1 буде видимий для користувача"
+  />
+
   <Checkbox
     label="Index"
     name="is_index"
