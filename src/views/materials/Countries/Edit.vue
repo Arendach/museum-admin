@@ -27,7 +27,15 @@ export default {
                 {id: 'neutral', title: 'Нейтральне'}
               ]
             },
-            {component: 'EditorLang', name: 'description', label: 'Опис'}
+            {component: 'EditorLang', name: 'description', label: 'Опис'},
+            {component: 'Checkbox', name: 'is_active', label: 'Активна'},
+            {component: 'Checkbox', name: 'is_top', label: 'В топі'},
+          ]
+        },
+        {
+          title: 'Зображення',
+          items: [
+            {component: 'PictureField', model: 'Country', name: 'picture'}
           ]
         },
         {
