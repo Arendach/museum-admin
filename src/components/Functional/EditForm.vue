@@ -9,18 +9,24 @@
               :label="field.label"
               :item="item"
               :name="field.name"
+              :hint="field.hint || null"
+              :required="field.required || false"
             />
             <InputLang
               v-else-if="field.component === 'InputLang'"
               :label="field.label"
               :item="item"
               :name="field.name"
+              :hint="field.hint || null"
+              :required="field.required || false"
             />
             <EditorLang
               v-else-if="field.component === 'EditorLang'"
               :label="field.label"
               :item="item"
               :name="field.name"
+              :hint="field.hint || null"
+              :required="field.required || false"
             />
             <MultiSelect
               v-else-if="field.component === 'MultiSelect'"
@@ -28,6 +34,8 @@
               :name="field.name"
               :options="mapMultiSelect(dynamic(field.options))"
               :selected="mapMultiSelect(item[field.name])"
+              :hint="field.hint || null"
+              :required="field.required || false"
             />
             <PictureField
               v-else-if="field.component === 'PictureField'"
@@ -41,6 +49,7 @@
               :label="field.label"
               :name="field.name"
               :value="item[field.name]"
+              :hint="field.hint || null"
             />
             <VSelect
               v-else-if="field.component === 'VSelect'"
@@ -48,12 +57,16 @@
               :name="field.name"
               :options="typeof field.options === 'object' ? field.options : dynamic(field.options)"
               :value="item[field.name]"
+              :hint="field.hint || null"
+              :required="field.required || false"
             />
             <TextareaLang
               v-else-if="field.component === 'TextareaLang'"
               :label="field.label"
               :name="field.name"
               :item="item"
+              :hint="field.hint || null"
+              :required="field.required || false"
             />
             <VideoField
               v-else-if="field.component === 'VideoField'"
@@ -65,6 +78,11 @@
               v-else-if="field.component === 'SeoField'"
               :item="item"
             />
+            <PasswordField
+              v-if="field.component === 'PasswordField'"
+              :hint="field.hint || null"
+              :required="field.required || false"
+            ></PasswordField>
           </div>
         </Tab>
       </Tabs>
@@ -88,6 +106,7 @@ import VSelect from "@/components/VSelect"
 import TextareaLang from "@/components/TextareaLang"
 import VideoField from "@/components/VideoField"
 import SeoField from "@/components/fields/SeoField"
+import PasswordField from "@/components/PasswordField";
 
 export default {
   name: 'EditForm',
@@ -106,6 +125,7 @@ export default {
     }
   },
   components: {
+    PasswordField,
     VideoField,
     TextareaLang,
     Checkbox,

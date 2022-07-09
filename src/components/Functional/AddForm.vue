@@ -8,22 +8,26 @@
               v-if="field.component === 'InputText'"
               :label="field.label"
               :name="field.name"
+              :required="field.required || false"
             />
             <InputLang
               v-else-if="field.component === 'InputLang'"
               :label="field.label"
               :name="field.name"
+              :required="field.required || false"
             />
             <EditorLang
               v-else-if="field.component === 'EditorLang'"
               :label="field.label"
               :name="field.name"
+              :required="field.required || false"
             />
             <MultiSelect
               v-else-if="field.component === 'MultiSelect'"
               :label="field.label"
               :name="field.name"
               :options="typeof field.options === 'object' ? field.options : dynamic(field.options)"
+              :required="field.required || false"
             />
             <PictureField
               v-else-if="field.component === 'PictureField'"
@@ -42,6 +46,7 @@
               :label="field.label"
               :name="field.name"
               :options="typeof field.options === 'object' ? field.options : dynamic(field.options)"
+              :required="field.required || false"
             />
             <TextareaLang
               v-else-if="field.component === 'TextareaLang'"
@@ -57,6 +62,11 @@
             />
             <SeoField
               v-else-if="field.component === 'SeoField'"
+            />
+            <PasswordField
+              v-else-if="field.component === 'PasswordField'"
+              :required="field.required || false"
+              :hint="field.hint || null"
             />
           </div>
         </Tab>
@@ -80,6 +90,7 @@ import VSelect from "@/components/VSelect"
 import TextareaLang from "@/components/TextareaLang"
 import VideoField from "@/components/VideoField"
 import SeoField from "@/components/fields/SeoField"
+import PasswordField from "@/components/PasswordField";
 
 export default {
   name: 'AddForm',
@@ -107,6 +118,7 @@ export default {
     }
   },
   components: {
+    PasswordField,
     InputText,
     MultiSelect,
     EditorLang,

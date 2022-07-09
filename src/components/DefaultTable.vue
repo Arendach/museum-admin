@@ -49,7 +49,7 @@
             <CIcon :icon="cilPen"></CIcon>
           </button>
         </RouterLink>
-        <DeleteButton :url="`${url}/${row[0]}`" @deleted="deleteItem(row[0])"></DeleteButton>
+        <DeleteButton v-if="showDeleteButton" :url="`${url}/${row[0]}`" @deleted="deleteItem(row[0])"></DeleteButton>
       </td>
     </tr>
     <tr v-if="!tableBody.length">
@@ -111,6 +111,10 @@ export default {
     filters: {
       type: Function,
       default: () => [null, null]
+    },
+    showDeleteButton: {
+      type: Boolean,
+      default: true,
     }
   },
   components: {
@@ -186,7 +190,7 @@ export default {
       clearTimeout(this.time)
       this.time = setTimeout(callback, 500)
     },
-    getOptions(field){
+    getOptions(field) {
       let options = this.dynamic(field)
       return [
         {id: null, title: 'Оберіть варіант'},
@@ -209,7 +213,7 @@ export default {
   background-color: #fff;
 }
 
-.empty-row{
+.empty-row {
   text-align: center;
   font-size: 20px;
 }

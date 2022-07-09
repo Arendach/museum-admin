@@ -1,11 +1,12 @@
 <template>
   <DefaultTable
-    url="/articles"
+    url="/pages"
     :header="header"
     :body="body"
     :filters="filters"
-    edit-route="articles.edit"
-    add-route="articles.add"
+    edit-route="pages.edit"
+    add-route="pages.add"
+    :show-delete-button="false"
   ></DefaultTable>
 </template>
 
@@ -20,33 +21,24 @@ export default {
         'ID',
         'Заголовок',
         'Slug',
-        'Автор',
-        'Теги'
       ],
       body: (item) => [
         item.id,
-        item.title,
+        this.displayTitle(item),
         item.slug,
-        this.displayAuthor(item),
-        this.displayTags(item)
       ],
       filters: () => [
         {type: 'input', field: 'id', term: 'is'},
         {type: 'input', field: 'title', term: 'like'},
         {type: 'input', field: 'slug', term: 'like'},
-        null,
-        null,
       ]
     }
   },
   components: {DefaultTable},
   methods: {
-    displayAuthor(item) {
-      return `<a href="${item.user.url}">${item.user.name}</a>`
-    },
-    displayTags(item) {
-      return item.tags.map((tag) => `<a :href="${tag.url}" class="btn btn-success btn-sm">${tag.title}</a>`).join(' ')
+    displayTitle(item) {
+      return `<a target="_blank" href="${item.url}">${item.title}</a>`
     }
-  },
+  }
 }
 </script>

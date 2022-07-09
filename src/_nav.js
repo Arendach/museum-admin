@@ -13,6 +13,11 @@ export default [
     items: [
       {
         component: 'CNavItem',
+        name: 'Сторінки',
+        to: {name: 'pages.list'},
+      },
+      {
+        component: 'CNavItem',
         name: 'Статті',
         to: {name: 'articles.list'},
       },
@@ -48,6 +53,19 @@ export default [
         component: 'CNavItem',
         name: 'Відеоматеріали',
         to: {name: 'videos.list'},
+      },
+    ],
+  },
+  {
+    component: 'CNavGroup',
+    name: 'Сайт',
+    to: '/common',
+    icon: 'cil-drop',
+    items: [
+      {
+        component: 'CNavItem',
+        name: 'Користувачі',
+        to: {name: 'users.list'},
       },
     ],
   },

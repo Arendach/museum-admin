@@ -8,6 +8,8 @@ import counties from '@/router/countries'
 import weapons from "@/router/weapons"
 import videos from "@/router/videos"
 import auth from "@/router/auth"
+import pages from "@/router/pages"
+import users from "@/router/users"
 
 const routes = [
   ...auth,
@@ -30,6 +32,8 @@ const routes = [
       ...counties,
       ...weapons,
       ...videos,
+      ...pages,
+      ...users,
     ],
   },
 ]
